@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -80,7 +80,7 @@ static NetworkService * sharedSingleton = nil;
 }
 
 - (void)setShortLinkPort:(const unsigned short)port {
-    mars::stn::SetShortlinkSvrAddr(port);
+    mars::stn::SetShortlinkSvrAddr(port, "");
 }
 
 - (void)setLongLinkAddress:(NSString *)string port:(const unsigned short)port debugIP:(NSString *)IP {
@@ -95,7 +95,7 @@ static NetworkService * sharedSingleton = nil;
     std::string ipAddress([string UTF8String]);
     std::vector<uint16_t> ports;
     ports.push_back(port);
-    mars::stn::SetLonglinkSvrAddr(ipAddress,ports);
+    mars::stn::SetLonglinkSvrAddr(ipAddress,ports, "");
 }
 
 - (void)makesureLongLinkConnect {
@@ -169,6 +169,11 @@ static NetworkService * sharedSingleton = nil;
 - (void)OnConnectionStatusChange:(int32_t)status longConnStatus:(int32_t)longConnStatus {
     [_delegate OnConnectionStatusChange:status longConnStatus:longConnStatus];
 }
+
+- (void)addPushObserver:(id<PushNotifyDelegate>)observer withCmdId:(int)cmdId {
+    [_delegate addPushObserver:observer withCmdId:cmdId];
+}
+
 
 #pragma mark NetworkStatusDelegate
 -(void) ReachabilityChange:(UInt32)uiFlags {

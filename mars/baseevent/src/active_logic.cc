@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -29,7 +29,7 @@
 #include "mars/comm/messagequeue/message_queue.h"
 
 static void onForeground(bool _isforeground) {
-    SINGLETON_STRONG(ActiveLogic)->OnForeground(_isforeground);
+    ActiveLogic::Singleton::Instance()->OnForeground(_isforeground);
 }
 
 static void __initbind_baseprjevent() {
@@ -38,16 +38,7 @@ static void __initbind_baseprjevent() {
 
 BOOT_RUN_STARTUP(__initbind_baseprjevent);
 
-#ifdef ANDROID
 #define INACTIVE_TIMEOUT (10*60*1000) //ms
-#elif defined Q_OS_BLACKBERRY
-#define INACTIVE_TIMEOUT (10*60*1000) //ms
-#elif defined _WIN32
-#define INACTIVE_TIMEOUT (10*60*1000) //ms
-#else
-#define INACTIVE_TIMEOUT (10*60*1000) //ms
-#endif
-
 
 ActiveLogic::ActiveLogic()
 : isforeground_(false), isactive_(true)
@@ -67,7 +58,7 @@ ActiveLogic::~ActiveLogic()
 {
     xinfo_function();
 	MessageQueue::CancelMessage(MessageQueue::DefAsyncInvokeHandler(MessageQueue::GetDefMessageQueue()), (MessageQueue::MessageTitle_t)this);
-	MessageQueue::WaitForRuningLockEnd(MessageQueue::DefAsyncInvokeHandler(MessageQueue::GetDefMessageQueue()));
+	MessageQueue::WaitForRunningLockEnd(MessageQueue::DefAsyncInvokeHandler(MessageQueue::GetDefMessageQueue()));
 }
 
 void ActiveLogic::OnForeground(bool _isforeground)

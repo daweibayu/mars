@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -25,8 +25,9 @@
 #include <vector>
 
 #include "unix_socket.h"
+#include "comm_data.h"
 
-class SocketSelectBreaker;
+class SocketBreaker;
 class socket_address;
 class AutoBuffer;
 
@@ -57,7 +58,9 @@ class ComplexConnect {
     ComplexConnect(unsigned int _timeout /*ms*/, unsigned int _interval /*ms*/, unsigned int _error_interval /*ms*/, unsigned int _max_connect);
     ~ComplexConnect();
 
-    SOCKET ConnectImpatient(const std::vector<socket_address>& _vecaddr, SocketSelectBreaker& _breaker, MComplexConnect* _observer = NULL);
+    SOCKET ConnectImpatient(const std::vector<socket_address>& _vecaddr, SocketBreaker& _breaker, MComplexConnect* _observer = NULL,
+                            mars::comm::ProxyType _proxy_type = mars::comm::kProxyNone, const socket_address* _proxy_addr = NULL,
+                            const std::string& _proxy_username = "", const std::string& _proxy_pwd = "");
 
     unsigned int TryCount() const { return trycount_;}
     int Index() const { return index_;}

@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -26,16 +26,14 @@
 namespace mars{
     namespace stn{
         
-Task::Task() {
+static uint32_t gs_taskid = 1;
+Task::Task():Task(atomic_inc32(&gs_taskid)) {}
+        
+Task::Task(uint32_t _taskid) {
     
-#ifndef ANDROID
-    static uint32_t s_taskid = 1;
-    taskid = atomic_inc32(&s_taskid);
-#else
-    taskid = 0;
-#endif
-    
+    taskid = _taskid;
     cmdid = 0;
+    channel_id = 0;
     channel_select = 0;
     
     send_only = false;

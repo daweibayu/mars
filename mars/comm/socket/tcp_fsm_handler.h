@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -24,8 +24,9 @@
 #include "comm/xlogger/xlogger.h"
 
 template<class InputIterator>
-bool TcpFSMHandler(InputIterator _first, InputIterator _last, SocketSelectBreaker& _breaker, bool _select_anyway)
+bool TcpFSMHandler(InputIterator _first, InputIterator _last, SocketBreaker& _breaker, bool _select_anyway)
 {
+	xverbose_function();
     xgroup2_define(group);
 
     SocketSelect sel(_breaker, true);
@@ -72,7 +73,7 @@ bool TcpFSMHandler(InputIterator _first, InputIterator _last, SocketSelectBreake
 }
 
 template<class InputIterator>
-void TcpFSMHandlerRunloop(InputIterator _first, InputIterator _last, SocketSelectBreaker& _breaker, bool _select_anyway)
+void TcpFSMHandlerRunloop(InputIterator _first, InputIterator _last, SocketBreaker& _breaker, bool _select_anyway)
 {
     xinfo_function();
 

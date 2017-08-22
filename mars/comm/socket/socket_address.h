@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -23,12 +23,12 @@
 
 #include "unix_socket.h"
 
-#include <string>
+#include <string.h>
 
 class socket_address {
 
   public:
-    socket_address(const char* _url);
+    explicit socket_address(const char* _url);
     explicit socket_address(const char* _ip, uint16_t _port);
     explicit socket_address(const sockaddr_in& _addr);
     explicit socket_address(const sockaddr_in6& _addr);
@@ -80,7 +80,7 @@ class socket_address {
         struct sockaddr_in  in;
         struct sockaddr_in6 in6;
     }                   addr_;
-    char                ip_[64];
+    char                ip_[96];
     char                url_[128];
 };
 

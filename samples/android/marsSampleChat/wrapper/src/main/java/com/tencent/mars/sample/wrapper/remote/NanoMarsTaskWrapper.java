@@ -1,5 +1,5 @@
 /*
-* Tencent is pleased to support the open source community by making GAutomator available.
+* Tencent is pleased to support the open source community by making Mars available.
 * Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 *
 * Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -16,7 +16,6 @@ package com.tencent.mars.sample.wrapper.remote;
 
 import com.google.protobuf.nano.CodedOutputByteBufferNano;
 import com.google.protobuf.nano.MessageNano;
-
 import com.tencent.mars.sample.utils.print.MemoryDump;
 import com.tencent.mars.stn.StnLogic;
 import com.tencent.mars.xlog.Log;

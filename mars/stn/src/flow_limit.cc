@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -87,6 +87,8 @@ void FlowLimit::__FlashCurVol() {
     uint64_t timeCur = ::gettickcount();
 	xassert2(timeCur >= time_lastflow_computer_, TSF"%_, %_", timeCur, time_lastflow_computer_);
     uint64_t interval = (timeCur - time_lastflow_computer_) / 1000;
+    
+    if (0 == interval) return;
 
     xdebug2(TSF"iCurFunnelVol=%0, iFunnelSpeed=%1, interval=%2", cur_funnel_vol_, funnel_speed_, interval);
     cur_funnel_vol_ -= interval * funnel_speed_;

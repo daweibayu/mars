@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -23,7 +23,7 @@
 
 #include <boost/bind.hpp>
 #include "messagequeue/message_queue.h"
-#include "messagequeue/message_queue_utils.h"
+#include "comm/xlogger/xlogger.h"
 
 #ifdef ANDROID
 #include "android/wakeuplock.h"
@@ -51,7 +51,9 @@ class Alarm {
 #ifdef ANDROID
         , wakelock_(NULL)
 #endif
-    {}
+    {
+        xinfo2(TSF"handler:(%_,%_)", reg_async_.Get().queue, reg_async_.Get().seq);
+    }
 
     template<class T>
     explicit Alarm(const T& _op, const MessageQueue::MessageQueue_t& _id)
@@ -65,7 +67,9 @@ class Alarm {
 #ifdef ANDROID
         , wakelock_(NULL)
 #endif
-    {}
+    {
+        xinfo2(TSF"handler:(%_,%_)", reg_async_.Get().queue, reg_async_.Get().seq);
+    }
 
     virtual ~Alarm() {
         Cancel();

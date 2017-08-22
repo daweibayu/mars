@@ -22,11 +22,15 @@ APPLE_COPY_EXT_FILES = {"stn/proto/longlink_packer.h": "longlink_packer.h",
         }
         
 WIN_COPY_EXT_FILES = {"stn/proto/longlink_packer.h": "longlink_packer.h",
+        "stn/proto/longlink_packer.cc": "longlink_packer.cc.rewriteme",
         "stn/proto/stnproto_logic.h": "stnproto_logic.h",
-        "stn/proto/longlink_packer.cc__": "longlink_packer.cc.rewriteme",
-        "comm/windows/projdef.h": "mars-open/comm/projdef.h",
-        "comm/windows/sys/cdefs.h": "mars-open/comm/sys/cdefs.h",
-        "comm/windows/sys/time.h": "mars-open/comm/sys/time.h"
+        "log/crypt/log_crypt.cc": "log_crypt.cc.rewriteme",
+        "log/crypt/log_crypt.h": "log_crypt.h",
+        "stn/proto/shortlink_packer.h": "shortlink_packer.h",
+        "stn/proto/shortlink_packer.cc": "shortlink_packer.cc.rewriteme",
+        "comm/windows/projdef.h": "include/mars/comm/windows/projdef.h",
+        "comm/windows/sys/cdefs.h": "include/mars/comm/windows/sys/cdefs.h",
+        "comm/windows/sys/time.h": "include/mars/comm/windows/sys/time.h"
         }
 
 html_css = '''
@@ -110,7 +114,7 @@ def parse_as_git():
 
 def gen_revision_file(save_path, tag):
     now_path = os.path.dirname(os.path.abspath(__file__))
-    print now_path
+    print (now_path)
 
     # TRY AS SVN
     revision, path, url = parse_as_svn()
@@ -162,7 +166,7 @@ def gen_revision_file(save_path, tag):
 
     output += html
 
-    print ''.join(output.splitlines())
+    print (''.join(output.splitlines()))
 
 def get_revision(path):
 
@@ -182,6 +186,10 @@ def copy_files(src_path, dst_header_path, framework_path, ext_files, child_proje
             "comm/autobuffer.h": "comm",
             "comm/http.h": "comm",
             "comm/time_utils.h": "comm",
+            "comm/time_utils.h": "comm",
+            "comm/strutil.h": "comm",
+            "comm/string_cast.h": "comm",
+            "comm/comm_data.h": "comm",
             "stn/stn.h": "stn",
             "stn/stn_logic.h": "stn",
             "baseevent/base_logic.h": "baseevent",
@@ -196,7 +204,6 @@ def copy_files(src_path, dst_header_path, framework_path, ext_files, child_proje
             "openssl/export_include/aes_crypt.h": "openssl",
             "openssl/export_include/md5_digest.h": "openssl",
             "openssl/export_include/rsa_crypt.h": "openssl",
-            "openssl/export_include/iCoreCrypt.h": "openssl",
             "openssl/export_include/gen_rsa_key_pair.h":"openssl",
             "openssl/export_include/rsa_pss_sha256.h":"openssl",
             "openssl/export_include/ecdsa_verify.h":"openssl",

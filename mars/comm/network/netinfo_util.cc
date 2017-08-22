@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -61,7 +61,7 @@ std::string GetDetailNetInfo() {
 	        break;
 	    }
 	 detail_net_info << "--------NetConfig Info----------"<< "\n";
-	 //2.网络配置信息（默认网关、dns svr、路由表）
+	 //2.网络配置信息（默认网关、dns svr、路由表） 
 	 	in6_addr addr6_gateway;
 	 	memset(&addr6_gateway, 0, sizeof(addr6_gateway));
 	    if (0 == getdefaultgateway6(&addr6_gateway)) {

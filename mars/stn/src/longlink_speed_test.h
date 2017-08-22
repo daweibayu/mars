@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -87,7 +87,7 @@ class LongLinkSpeedTest {
     boost::shared_ptr<NetSource> GetNetSource();
   private:
     boost::shared_ptr<NetSource> netsource_;
-    SocketSelectBreaker breaker_;
+    SocketBreaker breaker_;
     SocketSelect selector_;
 };
         

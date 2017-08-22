@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -39,7 +39,7 @@ int main(int argc, const char * argv[]) {
     xlogger_SetLevel(kLevelInfo);
     appender_set_console_log(false);
 #endif
-    appender_open(kAppednerAsync, [[libraryDirectory stringByAppendingString:@"/log/"] UTF8String], "test");
+    appender_open(kAppednerAsync, [[libraryDirectory stringByAppendingString:@"/log/"] UTF8String], "Test", "");
 
     return NSApplicationMain(argc, argv);
 }

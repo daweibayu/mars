@@ -1,5 +1,5 @@
 /*
-* Tencent is pleased to support the open source community by making GAutomator available.
+* Tencent is pleased to support the open source community by making Mars available.
 * Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 *
 * Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         String logPath = Environment.getExternalStorageDirectory().getPath() + "/logsample/xlog";
         Log.d("test", logPath);
         Xlog.setConsoleLogOpen(true);
-        Xlog.appenderOpen(Xlog.LEVEL_DEBUG, Xlog.AppednerModeAsync, "", logPath, "LOGSAMPLE");
+        Xlog.appenderOpen(Xlog.LEVEL_DEBUG, Xlog.AppednerModeAsync, "", logPath, "LOGSAMPLE", "");
 
 
         TextView tv = (TextView) findViewById(R.id.sample_text);

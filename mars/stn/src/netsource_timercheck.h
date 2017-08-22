@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -26,7 +26,6 @@
 #include "mars/comm/thread/thread.h"
 #include "mars/baseevent/active_logic.h"
 #include "mars/comm/socket/socketselect.h"
-#include "mars/comm/messagequeue/message_queue_utils.h"
 #include "mars/comm/messagequeue/message_queue.h"
 
 #include "net_source.h"
@@ -59,7 +58,7 @@ class NetSourceTimerCheck {
     Thread thread_;
     boost::signals2::scoped_connection active_connection_;
     NetSource* net_source_;
-    SocketSelectBreaker breaker_;
+    SocketBreaker breaker_;
     SocketSelect seletor_;
     CommFrequencyLimit* frequency_limit_;
     LongLink& longlink_;

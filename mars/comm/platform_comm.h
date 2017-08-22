@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -23,15 +23,14 @@
 
 #include <string>
 
+#ifdef ANDROID 
 #include "mars/comm/thread/mutex.h"
+#endif
+
 
 #ifndef __cplusplus
 #error "C++ only"
 #endif
-
-
-
-bool getProxyInfo(int& _port, std::string& _str_proxy, const std::string& _host = "");
 
 enum NetType {
     kNoNet = -1,

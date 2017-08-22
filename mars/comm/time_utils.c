@@ -117,7 +117,7 @@ uint64_t clock_app_monotonic() {
 
 uint64_t gettickcount() {//todoyy
     struct timespec ts;
-    if(0==clock_gettime(CLOCK_MONOTONIC, &ts)){
+    if (0==clock_gettime(CLOCK_MONOTONIC, &ts)){
         return (ts.tv_sec * 1000ULL + ts.tv_nsec / 1000000);
     }
     return 0;
@@ -129,37 +129,32 @@ uint64_t gettickcount() {//todoyy
 
 uint64_t gettickcount() {//todoyy
     struct timespec ts;
-    if(0==clock_gettime(CLOCK_MONOTONIC, &ts)){
+    if (0==clock_gettime(CLOCK_MONOTONIC, &ts)){
         return (ts.tv_sec * 1000ULL + ts.tv_nsec / 1000000);
     }
     return 0;
 }
-
-#elif WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
-
-#include "unistd.h"
-#include <stdint.h>
-
-uint64_t gettickcount()
-{
-    return GetTickCount64();
-}
-uint64_t clock_app_monotonic()
-{
-    return gettickcount();
-}
-
 #elif defined _WIN32
 //#define NOMINMAX
 //#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
 uint64_t gettickcount() {
-    return GetTickCount();
+	return GetTickCount();
 }
 
-uint64_t clock_app_monotonic()
-{
+uint64_t clock_app_monotonic() {
+	return gettickcount();
+}
+#elif WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || UWP 
+
+#include "unistd.h"
+#include <stdint.h>
+
+uint64_t gettickcount() {
+    return GetTickCount64();
+}
+uint64_t clock_app_monotonic() {
     return gettickcount();
 }
 
@@ -169,7 +164,7 @@ uint64_t clock_app_monotonic()
 
 int64_t gettickspan(uint64_t _old_tick) {
     uint64_t cur_tick = gettickcount();
-    if(_old_tick > cur_tick) return 0;
+    if (_old_tick > cur_tick) return 0;
 
     return cur_tick - _old_tick;
 }

@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -31,9 +31,9 @@ class LongLinkIdentifyChecker {
     ~LongLinkIdentifyChecker();
 
     bool GetIdentifyBuffer(AutoBuffer& _buffer, uint32_t& _cmd_id);
-    void SetSeq(uint32_t _seq);
+    void SetID(uint32_t _taskid);
 
-    bool IsIdentifyResp(uint32_t _seq);
+    bool IsIdentifyResp(uint32_t _cmdid, uint32_t _taskid, const AutoBuffer& _buffer, const AutoBuffer& _extend) const;
     bool OnIdentifyResp(AutoBuffer& _buffer);
 
     void Reset();

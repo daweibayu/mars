@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -24,10 +24,12 @@
 
 #include "mars/comm/alarm.h"
 #include "mars/comm/thread/mutex.h"
+#include "mars/comm/singleton.h"
 
 class ActiveLogic
 {
 public:
+    SINGLETON_INTRUSIVE(ActiveLogic, new ActiveLogic, delete);
     boost::signals2::signal<void (bool _isForeground)> SignalForeground;
     boost::signals2::signal<void (bool _isactive)> SignalActive;
 

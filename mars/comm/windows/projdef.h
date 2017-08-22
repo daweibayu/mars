@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -79,4 +79,9 @@
 #endif
 
 typedef SSIZE_T ssize_t;
+#define  PRIu64 "I64d"
+
+#if defined(WIN32) && !defined(SIZE_T_MAX)
+#define SIZE_T_MAX  UINT_MAX
+#endif
 

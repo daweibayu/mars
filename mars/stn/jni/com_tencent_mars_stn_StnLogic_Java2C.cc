@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -31,7 +31,7 @@
 #include "mars/comm/jni/util/comm_function.h"
 #include "mars/comm/jni/util/var_cache.h"
 #include "mars/comm/jni/util/scoped_jstring.h"
-#include "mars/log/appender.h"
+//#include "mars/log/appender.h"
 #include "mars/stn/stn_logic.h"
 
 #include "stn/src/net_core.h"
@@ -180,8 +180,7 @@ JNIEXPORT void JNICALL Java_com_tencent_mars_stn_StnLogic_startTask
 	jstring report_arg = (jstring)JNU_GetField(_env, _task, "reportArg", "Ljava/lang/String;").l;
 
 	//init struct Task
-	struct Task task;
-	task.taskid = taskid;
+	struct Task task(taskid);
 	task.cmdid = cmdid;
 	task.channel_select = channel_select;
 

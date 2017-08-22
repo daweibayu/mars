@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -172,7 +172,7 @@ bool two_addrs_on_one_interface(sockaddr* first_addr, sockaddr* second_addr) {
 }
 
 TLocalIPStack __local_ipstack_detect(std::string& _log) {
-    XMessage detail(_log);
+    XMessage detail;
     detail("local_ipstack_detect ");
 #ifdef __APPLE__
     in6_addr addr6_gateway = {0};
@@ -237,9 +237,6 @@ TLocalIPStack __local_ipstack_detect(std::string& _log) {
 }
 
 TLocalIPStack local_ipstack_detect() {
-#ifdef ANDROID
-	return ELocalIPStack_IPv4;
-#endif
     std::string log;
     return __local_ipstack_detect(log);
 }

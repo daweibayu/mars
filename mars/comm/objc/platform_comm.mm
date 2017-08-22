@@ -193,7 +193,7 @@ void ConsoleLog(const XLoggerInfo* _info, const char* _log)
     snprintf(log, sizeof(log), "[%s][%s][%s, %s, %d][%s", levelStrings[_info->level], NULL == _info->tag ? "" : _info->tag, file_name, strFuncName, _info->line, _log);
     
     
-    NSLog(@"%s", log);
+    NSLog(@"%@", [NSString stringWithUTF8String:log]);
 }
 
 bool isNetworkConnected()
@@ -252,13 +252,10 @@ bool getCurWifiInfo(WifiInfo& wifiInfo)
     wifiInfo.bssid = IWATCH_NET_INFO;
     return true;
 #else
-    static Mutex mutex;
     NSArray *ifs = nil;
-    {
-        ScopedLock lock(mutex);
+    @synchronized (@"CNCopySupportedInterfaces") {
         ifs = (id)CNCopySupportedInterfaces();
     }
-
     if(ifs == nil) return false;
         
     id info = nil;
@@ -268,15 +265,13 @@ bool getCurWifiInfo(WifiInfo& wifiInfo)
             break;
         }
             
-        if (nil!=info)
-        {
+        if (nil!=info) {
             CFRelease(info);
             info = nil;
         }
     }
         
-    if(info == nil)
-    {
+    if (info == nil) {
         CFRelease(ifs);
         return false;
     }

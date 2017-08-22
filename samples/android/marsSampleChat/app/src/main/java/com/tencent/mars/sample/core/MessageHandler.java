@@ -1,5 +1,5 @@
 /*
-* Tencent is pleased to support the open source community by making GAutomator available.
+* Tencent is pleased to support the open source community by making Mars available.
 * Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 *
 * Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -26,7 +26,7 @@ import com.tencent.mars.xlog.Log;
 /**
  * Created by caoshaokun on 16/12/20.
  */
-public class MessageHandler extends BusinessHandler{
+public class MessageHandler extends BusinessHandler {
 
     public static String TAG = MessageHandler.class.getSimpleName();
 
@@ -34,8 +34,7 @@ public class MessageHandler extends BusinessHandler{
     public boolean handleRecvMessage(PushMessage pushMessage) {
 
         switch (pushMessage.cmdId) {
-            case Constants.PUSHCMD:
-            {
+            case Constants.PUSHCMD: {
                 try {
                     Messagepush.MessagePush message = Messagepush.MessagePush.parseFrom(pushMessage.buffer);
                     Intent intent = new Intent();
@@ -48,7 +47,7 @@ public class MessageHandler extends BusinessHandler{
                     Log.e(TAG, "%s", e.toString());
                 }
             }
-                return true;
+            return true;
             default:
                 break;
         }

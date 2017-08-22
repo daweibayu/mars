@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -19,7 +19,7 @@
 #include <inttypes.h>
 #endif
 
-#include "comm/assert/__assert.h"
+#include "mars/comm/assert/__assert.h"
 
 
 const AutoBuffer KNullAtuoBuffer;
@@ -74,14 +74,27 @@ void AutoBuffer::AddCapacity(size_t _len) {
     __FitSize(Capacity() + _len);
 }
 
+void AutoBuffer::Write(const AutoBuffer& _buffer) {
+    Write(_buffer.Ptr(), _buffer.Length());
+}
+
 void AutoBuffer::Write(const void* _pbuffer, size_t _len) {
     Write(Pos(), _pbuffer, _len);
     Seek(_len, ESeekCur);
 }
 
+void AutoBuffer::Write(off_t& _pos, const AutoBuffer& _buffer) {
+    Write((const off_t&) _pos, _buffer.Ptr(), _buffer.Length());
+    _pos += _buffer.Length();
+}
+
 void AutoBuffer::Write(off_t& _pos, const void* _pbuffer, size_t _len) {
     Write((const off_t&) _pos,  _pbuffer,  _len);
     _pos += _len;
+}
+
+void AutoBuffer::Write(const off_t& _pos, const AutoBuffer& _buffer) {
+    Write((const off_t&) _pos, _buffer.Ptr(), _buffer.Length());
 }
 
 void AutoBuffer::Write(const off_t& _pos, const void* _pbuffer, size_t _len) {
@@ -287,8 +300,9 @@ void AutoBuffer::__FitSize(size_t _len) {
         void* p = realloc(parray_, mallocsize);
 
         if (NULL == p) {
-            ASSERT2(p, "_len=%" PRIu64 ", m_nMallocUnitSize=%" PRIu64 ", nMallocSize=%" PRIu64", m_nCapacity=%" PRIu64,
-                    (uint64_t)_len, (uint64_t)malloc_unitsize_, (uint64_t)mallocsize, (uint64_t)capacity_);
+		ASSERT2(p, "_len=%" PRIu64 ", m_nMallocUnitSize=%" PRIu64 ", nMallocSize=%" PRIu64", m_nCapacity=%" PRIu64,
+				(uint64_t)_len, (uint64_t)malloc_unitsize_, (uint64_t)mallocsize, (uint64_t)capacity_);
+
             free(parray_);
         }
 
